@@ -20,5 +20,9 @@ RUN ./gradlew build -x test
 # Create a new image for the final deployment
 FROM openjdk:17-jdk-slim
 WORKDIR /app
-COPY --from=builder /app/build/libs/*.jar app.jar
+
+# Correct the COPY command
+COPY --from=builder /app/build/libs/*.jar ./
+RUN mv *.jar app.jar  # rename the jar file to app.jar
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
