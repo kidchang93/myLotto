@@ -13,8 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        working-directory: ./lottofront
+        run: npm install
       - name: Build Vue.js Application
-        working-directory: ./lottofront  # front 디렉토리로 변경
+        working-directory: ./lottofront
         run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
