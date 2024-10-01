@@ -4,3 +4,4 @@ steps:
     dir: 'lottoNumber'
 images:
   - 'gcr.io/$PROJECT_ID/lotto-number-app'
+
