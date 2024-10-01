@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/lotto-number-app', '.']
-    dir: 'lottoNumber'  # Dockerfile이 위치한 디렉토리
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/lotto-number-app', '-f', 'Dockerfile', '.']
+    dir: 'lottoNumber'
 images:
   - 'gcr.io/$PROJECT_ID/lotto-number-app'
