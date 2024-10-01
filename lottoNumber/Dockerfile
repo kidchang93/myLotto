@@ -1,19 +1,13 @@
-FROM bellsoft/liberica-openjdk-alpine:17
-# or
-# FROM openjdk:8-jdk-alpine
-# FROM openjdk:11-jdk-alpine
+FROM gradle:8.8-jdk-alpine as build
+WORKDIR /app
+COPY . .
+#1-1. Gradle Wrapper 스크립트에 실행 권한을 부여
+RUN chmod +x ./gradlew
+RUN ./gradlew clean build -x test
 
-CMD ["./gradlew", "clean", "build"]
-# or Maven
-# CMD ["./mvnw", "clean", "package"]
-
-VOLUME /tmp
-
-ARG JAR_FILE=build/libs/*.jar
-# or Maven
-# ARG JAR_FILE_PATH=target/*.jar
-
-COPY ${JAR_FILE} app.jar
+FROM amazoncorretto:17-alpine
+WORKDIR /app
+COPY --from=build /app/build/libs/*.jar app.jar
 
 EXPOSE 8080
 
