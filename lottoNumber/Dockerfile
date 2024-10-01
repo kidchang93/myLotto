@@ -6,10 +6,10 @@ WORKDIR /app
 
 # Copy the gradlew script and set execute permission
 COPY gradlew ./
-COPY gradle/wrapper/ gradle/wrapper/
+COPY gradle/wrapper/ ./gradle/wrapper/
 COPY build.gradle ./
 COPY settings.gradle ./
-COPY src ./src
+COPY src ./src/
 
 # Give execute permission to gradlew
 RUN chmod +x gradlew
