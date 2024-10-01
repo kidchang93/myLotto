@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Vue.js Application
-        working-directory: ./front  # front 디렉토리로 변경
+        working-directory: ./lottofront  # front 디렉토리로 변경
         run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
