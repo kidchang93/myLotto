@@ -22,7 +22,9 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Correct the COPY command
-COPY --from=builder /app/build/libs/*.jar ./
-RUN mv *.jar app.jar  # rename the jar file to app.jar
+COPY --from=builder /app/build/libs/*.jar ./  # destination should be the current directory
+
+# Rename the jar file to app.jar if it exists
+RUN if [ -f *.jar ]; then mv *.jar app.jar; fi
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
