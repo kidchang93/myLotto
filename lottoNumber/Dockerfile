@@ -1,33 +1,20 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim AS builder
+FROM bellsoft/liberica-openjdk-alpine:17
+# or
+# FROM openjdk:8-jdk-alpine
+# FROM openjdk:11-jdk-alpine
 
-# Set the working directory
-WORKDIR /app
+CMD ["./gradlew", "clean", "build"]
+# or Maven
+# CMD ["./mvnw", "clean", "package"]
 
-# Copy the gradlew script and set execute permission
-COPY gradlew ./
-COPY gradle/wrapper/ ./gradle/wrapper/
-COPY build.gradle ./
-COPY settings.gradle ./
-COPY src ./src/
+VOLUME /tmp
 
-# Give execute permission to gradlew
-RUN chmod +x gradlew
+ARG JAR_FILE=build/libs/*.jar
+# or Maven
+# ARG JAR_FILE_PATH=target/*.jar
 
-# Build the application
-RUN ./gradlew build -x test --info
+COPY ${JAR_FILE} app.jar
 
-# Check the contents of the build/libs directory
-RUN ls -al /app/build/libs/
+EXPOSE 8080
 
-# Create a new image for the final deployment
-FROM openjdk:17-jdk-slim
-WORKDIR /app
-
-# Copy the JAR file to the container
-COPY --from=builder /app/build/libs/*.jar app.jar
-
-# Check if the JAR file exists
-RUN if [ -f app.jar ]; then echo "JAR file found"; else echo "No JAR file found"; fi
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-jar","/app.jar"]
