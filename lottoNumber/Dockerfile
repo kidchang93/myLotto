@@ -15,16 +15,19 @@ COPY src ./src/
 RUN chmod +x gradlew
 
 # Build the application
-RUN ./gradlew build -x test
+RUN ./gradlew build -x test --info
+
+# Check the contents of the build/libs directory
+RUN ls -al /app/build/libs/
 
 # Create a new image for the final deployment
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 
-# Correct the COPY command
-COPY --from=builder /app/build/libs/*.jar ./app.jar
+# Copy the JAR file to the container
+COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Rename the jar file to app.jar if it exists
-RUN if [ -f app.jar ]; then mv app.jar app.jar; else echo "No JAR file found"; fi
+# Check if the JAR file exists
+RUN if [ -f app.jar ]; then echo "JAR file found"; else echo "No JAR file found"; fi
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
