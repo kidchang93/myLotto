@@ -2,6 +2,10 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/lotto-number-app', '-f', 'Dockerfile', '.']
     dir: 'lottoNumber'
+
+  # Entrypoint, timeout and environment variables
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
 images:
   - 'gcr.io/$PROJECT_ID/lotto-number-app'
 
