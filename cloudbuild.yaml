@@ -5,3 +5,5 @@ steps:
 images:
   - 'gcr.io/$PROJECT_ID/lotto-number-app'
 
+options:
+  logging: CLOUD_LOGGING_ONLY  # Cloud Logging만 사용
