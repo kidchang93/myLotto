@@ -7,3 +7,4 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY  # Cloud Logging만 사용
+  region: asia-northeast3
