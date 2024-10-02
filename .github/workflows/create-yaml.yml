@@ -10,5 +10,5 @@ jobs:
     steps:
       - name: create application.yml file
         run:
-          touch /src/main/resources/application-dev.yml
-          echo "${{ secrets.DEV_YML }}" | base64 --decode > /src/main/resources/application-dev.yml
+          touch ./lottoNumber/src/main/resources/application-dev.yml
+          echo "${{ secrets.DEV_YML }}" | base64 --decode > ./lottoNumber/src/main/resources/application-dev.yml
