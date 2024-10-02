@@ -1,0 +1,15 @@
+name: create Yaml
+
+on:
+  push:
+    branches:
+      - release  # main 브랜치에 푸시할 때 실행
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    step:
+      - name: create application.yml file
+        run:
+          touch ./lottoNumber/src/main/resources/application-dev.yml
+          echo "${{ secrets.DEV_YML }}" | base64 --decode > ./lottoNumber/src/main/resources/application-dev.yml
+
