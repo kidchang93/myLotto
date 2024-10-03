@@ -23,7 +23,7 @@ const lottoNum = ref(null);
 const generateNumber = () => {
 axios.get("/api/generate")
     .then(function (response){
-      console.log(response)
+      // console.log(response)
       lottoNum.value = response.data.lotto;
     })
     .catch(function (error) {
@@ -40,7 +40,7 @@ const getRandomColor = () =>{
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
-  console.log(color)
+  // console.log(color)
   return color;
 };
 </script>
