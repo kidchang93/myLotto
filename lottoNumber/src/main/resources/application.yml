@@ -1,5 +1,6 @@
 server:
-  port: 8080
+  port: ${PORT:8080}  # PORT는 Cloud Run에서 설정하는 환경 변수입니다.
+  address: 0.0.0.0    # 모든 인터페이스에서 수신 대기
 vue-port: localhost:5173
 #---
 #spring:
