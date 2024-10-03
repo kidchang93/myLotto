@@ -36,8 +36,8 @@ on:
 
 env:
   PROJECT_ID: ckbuizness # TODO: update to your Google Cloud project ID
-  GAR-NAME: gh-mylotto
-  GAR-LOCATION: us-central1
+  GAR_NAME: gh-mylotto
+  GAR_LOCATION: us-central1
   REGION: us-central1 # TODO: update to your region
   SERVICE: my-lotto-app # TODO: update to your service name
 #  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # TODO: update to your workload identity provider
