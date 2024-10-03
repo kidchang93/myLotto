@@ -14,4 +14,4 @@ EXPOSE $PORT
 
 
 # ENTRYPOINT ["java","-jar","-Dspring.profiles.active=dev", "/app.jar"]
-ENTRYPOINT ["java","-jar", "/app.jar", "server.port=$PORT"]
+ENTRYPOINT ["java","-jar", "/app.jar"]
