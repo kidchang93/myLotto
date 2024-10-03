@@ -1,13 +1,13 @@
----
-spring:
-  profiles:
-    active: dev
-
 server:
   port: 8080
-
----
-spring:
-  profiles:
-    active: local
----
+vue-port: localhost:5173
+#---
+#spring:
+#  profiles:
+#    active: dev
+#
+#---
+#spring:
+#  profiles:
+#    active: local
+#---
