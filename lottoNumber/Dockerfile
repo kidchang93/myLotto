@@ -12,6 +12,5 @@ COPY --from=build /app/build/libs/*.jar app.jar
 ENV PORT 8080
 EXPOSE $PORT
 
-
-# ENTRYPOINT ["java","-jar","-Dspring.profiles.active=dev", "/app.jar"]
-ENTRYPOINT ["java","-jar", "/app.jar"]
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=dev", "/app.jar"]
+#ENTRYPOINT ["java","-jar", "/app.jar"]
