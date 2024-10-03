@@ -9,8 +9,9 @@ FROM amazoncorretto:17-alpine
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar app.jar
 
-EXPOSE 8080
+ENV PORT 8080
+EXPOSE $PORT
 
 
 # ENTRYPOINT ["java","-jar","-Dspring.profiles.active=dev", "/app.jar"]
-ENTRYPOINT ["java","-jar", "/app.jar"]
+ENTRYPOINT ["java","-jar", "/app.jar", "server.port=$PORT"]
