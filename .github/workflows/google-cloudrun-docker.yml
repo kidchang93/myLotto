@@ -59,6 +59,14 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
+      - name: 'List directories'
+        run: ls -R
+      - name: make application-dev.yaml
+        run: |
+          mkdir -p ./lottoNumber/src/main/resources  # Ensure the directory exists
+          echo "${{ secrets.DEV_YML }}" > ./lottoNumber/src/main/resources/application-dev.yaml
+        shell: bash
+
       # BEGIN - Docker auth and build
       #
       # If you already have a container image, you can omit these steps.
@@ -72,14 +80,7 @@ jobs:
           docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}/${{ github.sha }}" --file Dockerfile .
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}/${{ github.sha }}"
 
-      - name: 'List directories'
-        run: ls -R
-      - name: make application-dev.yaml
-        run: |
-          cd ./lottoNumber/src/main/resources
-          touch ./application-dev.yaml
-          echo "${{ secrets.DEV_YML }}" >> ./application-dev.yaml
-        shell: bash
+
       # END - Docker auth and build
       - name: 'Deploy to Cloud Run'
 
