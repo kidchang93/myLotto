@@ -51,6 +51,8 @@ jobs:
       id-token: 'write'
 
     steps:
+      - name: List directories
+        run: ls -R
       - name: make application-dev.yaml
         run: |
           cd ./lottoNumber/src/main/resources
